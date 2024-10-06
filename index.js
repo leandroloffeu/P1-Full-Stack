@@ -31,6 +31,31 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/rooms', authMiddleware, roomRoutes);
 
+// Salvando o objeto `io` no app para usar em rotas
+app.set('io', io);
+
+// Configuração do Socket.io
+io.on('connection', (socket) => {
+    console.log('Usuário conectado via WebSocket');
+
+    // Entrar em uma sala de chat específica
+    socket.on('joinRoom', ({ roomId, userName }) => {
+        socket.join(roomId);
+        console.log(`${userName} entrou na sala ${roomId}`);
+        io.to(roomId).emit('message', `${userName} entrou na sala.`);
+    });
+
+    // Receber e transmitir mensagens de chat
+    socket.on('chatMessage', ({ roomId, message, userName }) => {
+        io.to(roomId).emit('message', `${userName}: ${message}`);
+    });
+
+    // Desconectar
+    socket.on('disconnect', () => {
+        console.log('Usuário desconectado');
+    });
+});
+
 // Configuração do Socket.io
 // setupSocket(io);
 

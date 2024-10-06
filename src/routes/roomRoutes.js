@@ -138,5 +138,63 @@ router.get('/:roomId/messages', authMiddleware, async (req, res) => {
 });
 
 
+// Enviar uma mensagem para a sala
+router.post('/:roomId/messages', authMiddleware, async (req, res) => {
+    const { roomId } = req.params;
+    const { message } = req.body;
+    const userId = req.user.id;  // Pega o ID do usuário autenticado
+    const userName = req.user.name;  // Pega o nome do usuário autenticado
+
+    try {
+        // Buscar a sala com o roomId fornecido
+        const room = await Room.findOne({ id: roomId });
+
+        if (!room) {
+            return res.status(404).json({ error: 'Sala não encontrada' });
+        }
+
+        // Adicionar a mensagem à lista de mensagens da sala
+        room.messages.push({
+            sender: userName,
+            message,
+            timestamp: new Date()
+        });
+
+        await room.save();
+
+        // Enviar a mensagem para todos os clientes conectados à sala via WebSocket
+        req.app.get('io').to(roomId).emit('newMessage', {
+            sender: userName,
+            message,
+            timestamp: new Date()
+        });
+
+        res.json({ message: 'Mensagem enviada com sucesso' });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao enviar mensagem' });
+    }
+});
+
+// Listar todas as mensagens de uma sala
+router.get('/:roomId/messages', authMiddleware, async (req, res) => {
+    const { roomId } = req.params;
+
+    try {
+        const room = await Room.findOne({ id: roomId });
+
+        if (!room) {
+            return res.status(404).json({ error: 'Sala não encontrada' });
+        }
+
+        res.json(room.messages);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao listar mensagens' });
+    }
+});
 
 module.exports = router;
+
+
+
+
+
