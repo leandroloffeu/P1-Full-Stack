@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "4d9cbe65-eee4-4bc3-9073-5e24e2fd621a",
+		"name": "user-registration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38407113"
+	},
+	"item": [
+		{
+			"name": "Registro de Usuário (POST /api/users/register)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Leandro20\",\r\n  \"email\": \"leandro20@example.com\",\r\n  \"password\": \"123\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login de Usuário (POST /api/users/login)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"leandro10@example.com\",\r\n  \"password\": \"123\"\r\n}\r\n\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuários",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE5MjYyMWNiZDVlOTdiNGE0NGIyMCIsImVtYWlsIjoibGVhbmRybzEwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI4MTYwOTEzLCJleHAiOjE3MjgxNjQ1MTN9.QGk89u11a-5u9nV_sIi3CB-ovuDN09EJvALf1h80POM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDEzZmJhZWQzNTM3NjM5OTRiYWMwMSIsImVtYWlsIjoibGVhbmRybzNAZXhhbXBsZS5jb20iLCJpYXQiOjE3MjgxNDUxMDksImV4cCI6MTcyODE0ODcwOX0.nmn9NeC97EY3AeXPMrfJX2WvpOhecCxFjzEks-KhIVA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/users/6700929fbc9f3b2223f0036e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"users",
+						"6700929fbc9f3b2223f0036e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criação de Sala (POST /api/rooms)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE5MjdlMWNiZDVlOTdiNGE0NGIyMiIsImVtYWlsIjoibGVhbmRybzIwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI4MTU2MzAzLCJleHAiOjE3MjgxNTk5MDN9.L1vjc_eFuynSCwZa0KLL2W1IfyEoPCu8RSGEHRCYPtA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Reuniao 02\",\r\n  \"description\": \"Reuniao\",\r\n  \"capacity\": 2\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listagem de Salas (GET /api/rooms)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE5MjYyMWNiZDVlOTdiNGE0NGIyMCIsImVtYWlsIjoibGVhbmRybzEwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI4MTc0MzA1LCJleHAiOjE3MjgxNzc5MDV9.-aryg7gmvL6xBRRUf4jXlTBy1nAkKg40FQwKK60CnHs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Participação em Sala (POST /api/rooms/join)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE5MjYyMWNiZDVlOTdiNGE0NGIyMCIsImVtYWlsIjoibGVhbmRybzEwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI4MTU2NDk0LCJleHAiOjE3MjgxNjAwOTR9.Er1ONfr11a1Bl2Aur6w9xrFHYIlCa1MSh_QeHIf1W_k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"roomId\": \"4ce24018-77a1-4dd0-b824-303539de3549\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/rooms/join",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms",
+						"join"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar os participantes de uma sala de reunião",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE5MjYyMWNiZDVlOTdiNGE0NGIyMCIsImVtYWlsIjoibGVhbmRybzEwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI4MTc4MDE1LCJleHAiOjE3MjgxODE2MTV9.oODd-U5-W14DFOr4LPoHHlV-467YSJW56EkNg5MlZW0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/rooms/4ce24018-77a1-4dd0-b824-303539de3549/participants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms",
+						"4ce24018-77a1-4dd0-b824-303539de3549",
+						"participants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir uma Sala",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDEzZmJhZWQzNTM3NjM5OTRiYWMwMSIsImVtYWlsIjoibGVhbmRybzNAZXhhbXBsZS5jb20iLCJpYXQiOjE3MjgxNDI1OTUsImV4cCI6MTcyODE0NjE5NX0.krXyn8lI_yAu7r9Xgc3TLXmks8HB3gzDDCypU73zZd8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/rooms/aed1df5a-37dd-4262-8dbf-0b3d4c1cf992",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms",
+						"aed1df5a-37dd-4262-8dbf-0b3d4c1cf992"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir um participante de uma sala de reunião",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDEzZmJhZWQzNTM3NjM5OTRiYWMwMSIsImVtYWlsIjoibGVhbmRybzNAZXhhbXBsZS5jb20iLCJpYXQiOjE3MjgxNDI1OTUsImV4cCI6MTcyODE0NjE5NX0.krXyn8lI_yAu7r9Xgc3TLXmks8HB3gzDDCypU73zZd8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"6700929fbc9f3b2223f0036e\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/rooms/3ba4a0e8-84d3-45eb-963a-23fd3044c5ee/participants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms",
+						"3ba4a0e8-84d3-45eb-963a-23fd3044c5ee",
+						"participants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Envio de Mensagens para a sala a qual o usuário está conectado",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDJlM2VkMjg3NTQxOTc0NDVhZDVlZiIsImVtYWlsIjoidGVzdGVAZXhhbXBsby5jb20iLCJpYXQiOjE3MjgyNDg3MDksImV4cCI6MTcyODI1MjMwOX0.UAiBJZGIC3PvDabtVdPKRV8oVC2uVrZKg6rBt2z37Bs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE5MjYyMWNiZDVlOTdiNGE0NGIyMCIsImVtYWlsIjoibGVhbmRybzEwQGV4YW1wbGUuY29tIiwiaWF0IjoxNzI4MjI2ODI4LCJleHAiOjE3MjgyMzA0Mjh9.8S7mC5GS51u31-dB_LKPNPXfFwErMkfVrkD73tP5qsg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\": \"Esta é uma mensagem de teste.\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/rooms/047dc27c-3420-41cd-8e6a-46f86a45afa4/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms",
+						"047dc27c-3420-41cd-8e6a-46f86a45afa4",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar as Mensagens de uma Sala",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDJlM2VkMjg3NTQxOTc0NDVhZDVlZiIsImVtYWlsIjoidGVzdGVAZXhhbXBsby5jb20iLCJpYXQiOjE3MjgyNDg3MDksImV4cCI6MTcyODI1MjMwOX0.UAiBJZGIC3PvDabtVdPKRV8oVC2uVrZKg6rBt2z37Bs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/rooms/047dc27c-3420-41cd-8e6a-46f86a45afa4/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"rooms",
+						"047dc27c-3420-41cd-8e6a-46f86a45afa4",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
