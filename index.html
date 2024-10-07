@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat da Sala</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .chat-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        input {
+            flex: 1;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Entre na Sala de Chat</h2>
+
+        <form id="room-form">
+            <input type="text" id="room-id" placeholder="ID da Sala" required>
+            <input type="text" id="user-id" placeholder="ID do Usuário" required>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div id="chat-section" style="display:none;">
+            <div class="chat-box" id="chat-box"></div>
+
+            <form id="message-form">
+                <input type="text" id="mensagem" placeholder="Digite sua mensagem..." required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Inclua a biblioteca de WebSocket -->
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        let roomId, userId, socket;
+
+        // Evento para entrar na sala
+        document.getElementById('room-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Obter IDs da sala e usuário
+            roomId = document.getElementById('room-id').value;
+            userId = document.getElementById('user-id').value;
+
+            // Exibir a seção do chat e ocultar o formulário de entrada
+            document.getElementById('chat-section').style.display = 'block';
+            document.getElementById('room-form').style.display = 'none';
+
+            // Conectar ao servidor WebSocket e entrar na sala
+            socket = io('http://localhost:5000');
+            socket.emit('joinRoom', { roomId, userId });
+
+            // Escutar novas mensagens
+            socket.on('newMessage', function(message) {
+                const chatBox = document.getElementById('chat-box');
+                const p = document.createElement('p');
+                p.innerHTML = `<strong>${message.sender}:</strong> ${message.message}`;
+                chatBox.appendChild(p);
+
+                // Rolagem automática para a última mensagem
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        });
+
+        // Enviar mensagem
+        document.getElementById('message-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const mensagem = document.getElementById('mensagem').value;
+
+            // Enviar mensagem via WebSocket
+            socket.emit('sendMessage', { roomId, userId, message: mensagem });
+
+            // Limpar o campo de mensagem
+            document.getElementById('mensagem').value = '';
+        });
+    </script>
+</body>
+</html>
