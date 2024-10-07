@@ -5,4 +5,5 @@
 ### Laboratório de Programação Full Stack - 6º Período
 ### Professor: Fabicio
 ## Link do vídeo: https://www.youtube.com/watch?v=vCZnSMp06v4
+## Documentação Swagger: http://localhost:5000/api-docs/#/
 
