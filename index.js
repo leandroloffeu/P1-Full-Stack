@@ -96,6 +96,16 @@ socket.on('chatClient', async ({ roomId, message, userName }) => {
   });
 });
 
+
+// Carregar o arquivo swagger.yaml
+const swaggerDocument = yaml.load('./swagger.yaml');
+
+
+// Configuração do Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
+
 // Iniciar o servidor
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
